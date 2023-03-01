@@ -1,6 +1,6 @@
 # lambda-api-gateway-terraform
 
-![Image](images/logo/IMG.png "Terraform")
+![Image](images/logo/i.png "Terraform")
 
 ## Getting started
 Install Terraform
