@@ -64,3 +64,9 @@ resource "aws_api_gateway_method" "proxy" {
     "method.request.path.proxy" = true
   }
 }
+-- # this is the resource for the customer endpoint, which will look like https://api/v1/customer
+resource "aws_api_gateway_resource" "customer" { 
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_resource.v1.id
+  path_part   = "customer"
+}
