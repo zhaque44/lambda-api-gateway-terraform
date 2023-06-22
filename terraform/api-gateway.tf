@@ -27,8 +27,20 @@ resource "aws_api_gateway_rest_api_policy" "example" {
         "Effect": "Allow",
         "Principal": "*",
         "Action": "execute-api:Invoke",
-        "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.edify-api.id}/*/*/*"
+        "Resource": "arn:aws:execute-api:${var.region}:${var.account_id}:${aws_api_gateway_rest_api.api.id}/*/*/*"
       }
     ]
   })
+}
+-- this is the root resource, which means that the API Gateway will be accessible at https://api.endpoint/v1
+resource "aws_api_gateway_resource" "v1" { 
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_rest_api.api.root_resource_id
+  path_part   = "v1"
+}
+ -- this is the payment resource, which means that the API Gateway will be accessible at https://api.endpoint/v1/payment
+resource "aws_api_gateway_resource" "payment" {
+  rest_api_id = aws_api_gateway_rest_api.api.id
+  parent_id   = aws_api_gateway_resource.v1.id
+  path_part   = "payment"
 }
