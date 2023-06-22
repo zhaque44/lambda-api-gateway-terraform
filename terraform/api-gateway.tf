@@ -1,6 +1,6 @@
-resource "aws_apigatewayv2_api" "main" {
-  name          = "main"
-  protocol_type = "HTTP"
+resource "aws_api_gateway_rest_api" "api" {
+  name        = "api"
+  description = "API Gateway"
 }
 
 resource "aws_apigatewayv2_stage" "dev" {
