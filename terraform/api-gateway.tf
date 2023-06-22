@@ -53,3 +53,14 @@ resource "aws_api_gateway_integration" "proxy" {
   integration_http_method = "POST"
   uri                     = aws_lambda_function.handler.invoke_arn
 }
+-- # this is the method that is used to call the lambda function, which means that the lambda function is called when the API Gateway receives a request
+resource "aws_api_gateway_method" "proxy" { 
+  rest_api_id      = aws_api_gateway_rest_api.api.id
+  resource_id      = aws_api_gateway_resource.proxy.id
+  http_method      = "ANY" -- the method is ANY because the API Gateway can receive any type of request, such as GET, POST, PUT, DELETE, etc.
+  authorization    = "NONE"
+  api_key_required = false
+  request_parameters = {
+    "method.request.path.proxy" = true
+  }
+}
