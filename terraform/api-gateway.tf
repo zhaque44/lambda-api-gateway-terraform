@@ -2,7 +2,7 @@ resource "aws_api_gateway_rest_api" "api" {
   name        = "api"
   description = "API Gateway"
 }
--- # this is the IP address of the Edify servers, which means that only theese IPs can access the API Gateway
+
 resource "aws_api_gateway_rest_api_policy" "example" { 
   rest_api_id = aws_api_gateway_rest_api.api.id
   policy = jsonencode({
