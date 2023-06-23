@@ -13,3 +13,12 @@ Initialize the checkout to get the aws provider and initialize your local copy o
 terraform init
 ```
 After your state has been initialized it will generate a `.terraform.lock.hcl` file
+
+Now compare your current state with your desired state:
+```
+terraform plan
+```
+Apply the changes:
+```
+terraform apply
+```
