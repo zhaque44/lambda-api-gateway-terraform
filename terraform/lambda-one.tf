@@ -47,7 +47,7 @@ resource "aws_lambda_function" "lambda-one" {
   }
 
   depends_on = [
-    aws_mq_broker.edify-broker,
+    aws_mq_broker.mq-broker,
   ]
 }
 
